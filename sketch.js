@@ -11,6 +11,12 @@ const RADIUS = 54;
 // analyser will hold the amplitude data from the audio
 let song, analyser;
 
+// Let's make variables for the volume and pan
+// We will start the volume at 1.0 (full volume) 
+let volume = 1.0;
+// We will start the pan at 0.0 (centre). It goes from -1.0 (left only) to 1.0 (right only)
+let pan = 0.0;
+
 // Let's load the sound file in preload
 function preload() {
   song = loadSound('audio/drumbeat.MP3');
@@ -106,6 +112,15 @@ function draw() {
     push(); translate(260, 428); scale(scaleFactor); drawBlackCircles(0, 0); pop();
 
     push(); translate(380, 400); scale(scaleFactor); drawRedCircle(0, 0); pop();
+
+    //Display the current volume and pan on the screen
+    fill(0);
+    textSize(18);
+    //We will limit the number of decimal places to 2 using the function toFixed(2)
+    text('Volume: ' + volume.toFixed(2), 10, 20);
+    //Draw the pan value on the screen
+    text('Pan: ' + pan.toFixed(2), 10, 40);
+
     drawingContext.restore();
   pop();
 }
@@ -117,6 +132,16 @@ function play_pause() {
   } else {
     song.loop();
   }
+}
+
+function mouseMoved() {
+  // Map the mouseY to a volume value between 0 and 1
+  volume = map(mouseY, 0, height, 1, 0);
+  song.setVolume(volume);
+
+  // Map the mouseX to a pan value between -1 and 1
+  pan = map(mouseX, 0, width, -1, 1);
+  song.pan(pan);
 }
 
 //Drawing on drawSunMoon(252, 108) and drawSunMoon(54,52)
