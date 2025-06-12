@@ -31,8 +31,6 @@ function setup() {
   //Place the button in the bottom center of the canvas
   button.position((width - button.width) / 2, height - button.height - 2);
   button.mousePressed(play_pause);
-
-  noLoop();
 }
 
 function windowResized() {
@@ -64,42 +62,51 @@ function draw() {
     //background
     noStroke();
     fill(255);
-    triangle(0,0,400,0,0,400);
+    triangle(0, 0, 400, 0, 0, 400);
     fill(0);
-    triangle(400,400,400,0,0,400);
+    triangle(400, 400, 400, 0, 0, 400);
 
     //circles
     noStroke();
     fill(255);
-    for (let [x,y] of circles) {
-      ellipse(x,y, RADIUS*2, RADIUS*2);
+    for (let [x, y] of circles) {
+      ellipse(x, y, RADIUS * 2, RADIUS * 2);
     }
 
-    drawSunMoon(254, 110);
-    drawSunMoon(54, 48);
+    let level = analyser.getLevel();
+    let scaleFactor = map(level, 0, 0.5, 1, 0.5);
+    scaleFactor = constrain(scaleFactor, 0.5, 1);
+    /**
+    *For each circle, we first push() to save the canvas state, translate(x, y) to move the origin to the center of the circle, 
+    *scale(scaleFactor) according to the amplitude, then draw the graphics at (0,0), and finally pop() to restore, 
+    *so that the circle can be enlarged and reduced around its own center with the drumbeat.
+    */
+    push(); translate(254,110); scale(scaleFactor); drawSunMoon(0,0); pop();
+    push(); translate(54, 48); scale(scaleFactor); drawSunMoon(0, 0); pop();
 
-    drawEgg(140, 136);
-    drawEgg(-8, 268);
+    push(); translate(140, 136); scale(scaleFactor); drawEgg(0, 0); pop();
+    push(); translate(-8, 268); scale(scaleFactor); drawEgg(0, 0); pop();
 
-    drawGreenCircle(108, 248);
-    drawGreenCircle(292, 3);
+    push(); translate(108, 248); scale(scaleFactor); drawGreenCircle(0, 0); pop();
+    push(); translate(292, 3); scale(scaleFactor); drawGreenCircle(0, 0); pop();
 
-    drawBlueCircle(28, 160);
-    drawBlueCircle(172, 25);
+    push(); translate(28, 160); scale(scaleFactor); drawBlueCircle(0, 0); pop();
+    push(); translate(172, 25); scale(scaleFactor); drawBlueCircle(0, 0); pop();
 
-    drawConcentricCircles(340,192);
-    drawConcentricCircles(184,340);
+    push(); translate(340, 192); scale(scaleFactor); drawConcentricCircles(0, 0); pop();
+    push(); translate(184, 340); scale(scaleFactor); drawConcentricCircles(0, 0); pop();
 
-    drawFlawerCircles(64,356);
-    drawFlawerCircles(304,308);
+    push(); translate(64, 356); scale(scaleFactor); drawFlawerCircles(0, 0); pop();
+    push(); translate(304, 308); scale(scaleFactor); drawFlawerCircles(0, 0); pop();
 
-    drawSectorCircles(224,220);
-    drawSectorCircles(420,284);
+    push(); translate(224, 220); scale(scaleFactor); drawSectorCircles(0, 0); pop();
+    push(); translate(420, 284); scale(scaleFactor); drawSectorCircles(0, 0); pop();
 
-    drawBlackCircles(378,80);
-    drawBlackCircles(260,428);
+    push(); translate(378, 80); scale(scaleFactor); drawBlackCircles(0, 0); pop();
+    push(); translate(260, 428); scale(scaleFactor); drawBlackCircles(0, 0); pop();
 
-    drawRedCircle(380,400);
+    push(); translate(380, 400); scale(scaleFactor); drawRedCircle(0, 0); pop();
+    drawingContext.restore();
   pop();
 }
 
