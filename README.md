@@ -1,5 +1,5 @@
 # xwan0195_FinalIndividual
-My Final individual assignment for IDEA9103
+My Final individual assignment for IDEA9103.
 A p5.js–powered animation that responds to audio and user input.  
 
 ## Interaction Guide
