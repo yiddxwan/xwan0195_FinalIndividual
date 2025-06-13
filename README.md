@@ -2,7 +2,7 @@
 My Final individual assignment for IDEA9103
 A p5.js–powered animation that responds to audio and user input.  
 
-## 🖱️ Interaction Guide
+## Interaction Guide
 1. **Play / Pause**  
    - Click the **Play** button at the bottom center to start the background beat & animation.  
    - Click **Pause** to stop both audio and motion.
@@ -13,7 +13,7 @@ A p5.js–powered animation that responds to audio and user input.
 4. **Automatic Animation**  
    - Once audio plays, shapes in the canvas will scale and pulse according to the beat within **0.5–1.5×** of their original size.
 
-## ✨ Personal Animation Approach
+## Personal Animation Approach
 ### 1.Selected drive mode
 - **Audio**:Use the level or frequency content of an audio track to animate your work.
 
@@ -36,7 +36,7 @@ A p5.js–powered animation that responds to audio and user input.
 - **Impact on My Code:**  
   - Adopted the “pulse on beat” idea from the p5.js Sound Examples.
 
-## 🛠️ Technical Notes & References
+## Technical Notes & References
 1. **Major Code Changes**
    - Wrapped interactive controls in a custom UI panel created via `createButton()` and CSS.
 
